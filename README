@@ -1,0 +1,63 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=166
+
+libList.vim is a set of functions to work with lists or one level arrays.
+
+
+
+Lists are strings variables with values separated by g:listSep character (comma by default). You may redefine g:listSep variable as you wish.
+
+
+
+Here are available functions :
+
+
+
+- AddListItem( array, newItem, index ) : Add item "newItem" to array "array" at "index" position
+
+- GetListItem( array, index ) : Return item at "index" position in array "array"
+
+- GetListMatchItem( array, pattern ) : Return item matching "pattern" in array "array"
+
+- GetListCount( array ) : Return the number of items in array "array"
+
+- RemoveListItem( array, index ) : Remove item at "index" position from array "array"
+
+- ReplaceListItem( array, index, item ) : Remove item at "index" position by "item" in array "array"
+
+- ExchangeListItems( array, item1Index, item2Index ) : Exchange item "item1Index" with item "item2Index" in array "array"
+
+- QuickSortList( array, beg, end ) : Return array "array" with items between "beg" and "end" sorted
+
+
+
+Example:
+
+let mylist=""
+
+echo GetListCount( mylist ) " --> 0
+
+let mylist = AddListItem( mylist, "One", 0 ) " mylist == "One"
+
+let mylist = AddListItem( mylist, "Three", 1 ) " mylist == "One,Three"
+
+let mylist = AddListItem( mylist, "Two", 1 ) " mylist == "One,Two,Three"
+
+echo GetListCount( mylist ) " --> 3
+
+echo GetListItem( mylist, 2 ) " --> Three
+
+echo GetListMatchItem( mylist, "w" ) " --> two
+
+echo GetListMatchItem( mylist, "e" ) " --> One
+
+let mylist = RemoveListItem( mylist, 2 ) " mylist == "One,Two"
+
+echo GetListCount( mylist ) " --> 2
+
+let mylist = ReplaceListItem( mylist, 0, "Three" ) " mylist == "Three,Two"
+
+let mylist = ExchangeListItems( mylist, 0, 1 ) " mylist == "Two,Three"
+
+let mylist = AddListItem( mylist, "One", 0 ) " mylist == "One,Two,Three"
+
+let mylist = QuickSortList( mylist, 0, GetListCount(mylist)-1 ) " mylist == "One,Three,Two"
